@@ -127,7 +127,7 @@ end
 
 ---
 
-Goodbye!
+Thanks
 
 +++
 
