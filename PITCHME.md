@@ -1,9 +1,9 @@
-Garbage collector in ruby, why should I care!
+# Garbage collector in ruby, why should I care!
 
 
 +++
 
-Aboobacker MK
+# Aboobacker MK
 
 Software Engineer @ Redpanthers
 
@@ -16,8 +16,18 @@ Last minute backup talk
 
 ---
 
-Let's Talk about memmory
+# Let's Talk about memmory
 
+---
+
+Stack: for static memory allocation
+Heap: Dynamic memory allocation
+
+---
+
+# Ruby stores everything in heap
+
+** Except fibres
 ---
 
 Goodbye!
