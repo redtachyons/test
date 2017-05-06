@@ -21,6 +21,7 @@ Last minute backup talk
 ---
 
 Stack: for static memory allocation
+
 Heap: Dynamic memory allocation
 
 ---
@@ -28,6 +29,30 @@ Heap: Dynamic memory allocation
 # Ruby stores everything in heap
 
 ** Except fibres
+---
+
+# Every thing is an object
+
+---
+
+# Objects everywhere
+
+---
+
+# We have to clean it
+---
+
+Grabage collector
+---
+
+
+```ruby
+a = "foo"
+b = "bar"
+c = { a => b }
+```
+
+![image](images/root.png)
 ---
 
 Goodbye!
