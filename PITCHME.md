@@ -63,6 +63,8 @@ Mark and Sweep (Ruby 1.8)
 * Mark all living objects
 * Remove unmakrked objects 
 
+---
+
 ![mark](images/msweep.png)
 ---
 Simple, But causes parogram pause
