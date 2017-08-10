@@ -164,10 +164,10 @@ Bitmap marking (Ruby 2.0)
 
 # Generational GC
 
-* Yound generation and old generation |
-* Major and Minor GC |
-* Address throughput issue |
-* Most objects die young |
+- Yound generation and old generation |
+- Major and Minor GC |
+- Address throughput issue |
+- Most objects die young |
 
 ---
 
@@ -203,9 +203,9 @@ end
 
 ---
 # Compaction GC
-* Work in progress
-* Remove heap fragmentation by alligning objects together
-* By Aaron Patterson
+- Work in progress
+- Remove heap fragmentation by alligning objects together
+- By Aaron Patterson
 
 # Other changes
 * Parallel marking
@@ -217,32 +217,34 @@ end
   foo = "a string"
 end
 ```
-
-```ruby
-RETAINED = []
-100_000.times do
-  RETAINED << "a string"
-end
-
+# TIPS
 ```
----
-
-# Diffrence with python GC
-
-* Ruby uses free list
-* Python asks for memory
-* Reference count inside objects
-* reset reference to 0 when no longer in use
+## Can ~~money~~ sacrifising perfomence buy happiness ?
 
 ---
-# Defragmentation
+> Programmers waste enormous amounts of time thinking about, or worrying about, the speed of noncritical parts of their programs, and these attempts at efficiency actually have a strong negative impact when debugging and maintenance are considered. We should forget about small efficiencies, say about 97% of the time: premature optimization is the root of all evil. Yet we should not pass up our opportunities in that critical 3%. Donald Knuth
 
 ---
-# Slow?
+- Prefer symbol over string for hash key |
+- Do not try to retain objects in the memory unless necessory |
+- Use frozen string literal feature for ruby 2.3 and above |
+- Use jmalloc over glibc |
+- Tune GC parameters (Only if you know what you are doing) |
+- Limit strings less than 23 characters when possible | 
+- Offload operations to database | 
+- Do not depend enumerables when data is too big | 
+- Always update to latest ruby version |
+---
+
+#TOOLS
+- Rack mini profiler
+- Derailed Benchmarks |
+- Heapy |
+- ruby-prof |
 
 ---
 
 Thanks
 
-+++
+---
 
