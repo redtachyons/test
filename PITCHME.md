@@ -90,6 +90,15 @@ c = nil
 @[4](Resetting value c to nil)
 
 ![image](images/root.png)
+
+---
+```ruby
+a = [
+  {c: 'd'}
+]
+```
+
+![object diagram](images/ruby_heap_slot.png)
 ---
 Collect all unused objects
 ---
@@ -148,16 +157,16 @@ Bitmap marking (Ruby 2.0)
 +++
 
 # Copy on Write
-* Process and threads for independent execution
-* Processes have own memory space |
-* Threads share memory in the parent process |
-* Copy on write is a os feature which enables sharing of space between child processes till they are modified by one of the process
+- Process and threads for independent execution
+- Processes have own memory space |
+- Threads share memory in the parent process |
+- Copy on write is a os feature which enables sharing of space between child processes till they are modified by one of the process
 
 +++
 
-* Ruby couldn't take advantage of this since we where changing objects for marking
-* Bitmap marking take care of this by keeping marks out of the object
-* Introduced by Narihiro Nakamura
+- Ruby couldn't take advantage of this since we where changing objects for marking
+- Bitmap marking take care of this by keeping marks out of the object | 
+- Introduced by Narihiro Nakamura |
 
 
 ---
@@ -173,9 +182,9 @@ Bitmap marking (Ruby 2.0)
 
 Incremental GC
 
-* Intereleave GC process and Ruby process
-* Shorter individual pause
-* consistent perfomenece
+- Intereleave GC process and Ruby process
+- Shorter individual pause | 
+- consistent perfomenece |
 
 ---
 * white object: Not marked object
