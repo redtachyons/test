@@ -1,7 +1,20 @@
 # Garbage collector in ruby, why should I care!
 
 
+---?image=assets/bg.jpg
+
+# Ugly Indian Initiative
+
 +++
+
+![Quint Image1](images/thequint_ugly_indian.jpg)
+
++++
+
+![Quint Image2](thequint_ugly_indian2.jpg)
+---
+# Garbage In ruby ?
+---
 
 # Aboobacker MK
 
@@ -11,18 +24,31 @@ Software Engineer @ Redpanthers
 @_tachyons in twitter
 
 ---
+## Redpanthers
+![Redpanthers](images/redpanthers.logo)
+### We love conferences
 
-Last minute backup talk
+Group photo here
 
+---
+# GC in a language designed for happiness
 ---
 
 # Let's Talk about memmory
+
++++
+![RAM](https://upload.wikimedia.org/wikipedia/commons/7/7c/RAM_module_SDRAM_1GiB.jpg)
+> Source : https://commons.wikimedia.org/wiki/File:RAM_module_SDRAM_1GiB.jpg
 
 ---
 
 Stack: for static memory allocation
 
 Heap: Dynamic memory allocation
+
++++
+
+![Stack vs HEAP](https://i.imgur.com/HB2GtHg.png)
 
 ---
 
@@ -42,7 +68,14 @@ Heap: Dynamic memory allocation
 # We have to clean it
 ---
 
-Grabage collector
+#Grabage collector
+
+* Also responsible Object allocation(Garbage creation)
+* Allocate in empty slots 
+* Allocate new page when empty slots aren't available
+
+---
+
 ---
 
 
