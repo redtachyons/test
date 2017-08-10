@@ -202,26 +202,22 @@ end
 @[4](Make all clearly living objects as grey)
 @[5-8](Pick one grey object, visit each object it references and color it grey. Change the color of the original object to black. Repeat until there are no grey objects left only black and white)
 @[9](Collect white objects as all living objects colored black)
-```
 
 ---
 # Compaction GC
 - Work in progress
-- Remove heap fragmentation by alligning objects together
-- By Aaron Patterson
+- Remove heap fragmentation by alligning objects together | 
+- By Aaron Patterson |
+
+---
 
 # Other changes
 * Parallel marking
 * Symbol GC(2.2)
 ---
-# Object retention
-```ruby
-100_000.times do
-  foo = "a string"
-end
-```
 # TIPS
-```
+---
+
 ## Can ~~money~~ sacrifising perfomence buy happiness ?
 
 ---
