@@ -145,14 +145,29 @@ Bitmap marking (Ruby 2.0)
 
 * Copy on write optimisation
 
++++
+
+# Copy on Write
+* Process and threads for independent execution
+* Processes have own memory space |
+* Threads share memory in the parent process |
+* Copy on write is a os feature which enables sharing of space between child processes till they are modified by one of the process
+
++++
+
+* Ruby couldn't take advantage of this since we where changing objects for marking
+* Bitmap marking take care of this by keeping marks out of the object
+* Introduced by Narihiro Nakamura
+
 
 ---
 
 # Generational GC
 
-* Yound and old
-* Addresses throughput issue
-* Most objects die young
+* Yound generation and old generation |
+* Major and Minor GC |
+* Address throughput issue |
+* Most objects die young |
 
 ---
 
@@ -165,8 +180,36 @@ Incremental GC
 ---
 * white object: Not marked object
 * Grey object: Marked, but may have reference to white objects
-* Marked, but no reference
+* Black Marked, but no reference
 
+```ruby
+module GC
+  def self.run
+    objects.update_all(color: white)
+    clearly_living_objects.update_all(color: grey)
+    objects.where(color: grey).each do |object|
+      object.references.update_all(color: grey)
+      object.update(color: black)
+    end
+    objects.where(color: white).destroy_all
+  end
+end
+
+@[3](Mark all objects as white )
+@[4](Make all clearly living objects as grey)
+@[5-8](Pick one grey object, visit each object it references and color it grey. Change the color of the original object to black. Repeat until there are no grey objects left only black and white)
+@[9](Collect white objects as all living objects colored black)
+```
+
+---
+# Compaction GC
+* Work in progress
+* Remove heap fragmentation by alligning objects together
+* By Aaron Patterson
+
+# Other changes
+* Parallel marking
+* Symbol GC(2.2)
 ---
 # Object retention
 ```ruby
