@@ -196,6 +196,7 @@ module GC
     objects.where(color: white).destroy_all
   end
 end
+```
 
 @[3](Mark all objects as white )
 @[4](Make all clearly living objects as grey)
