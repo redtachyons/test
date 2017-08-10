@@ -11,7 +11,7 @@
 
 +++
 
-![Quint Image2](thequint_ugly_indian2.jpg)
+![Quint Image2](images/thequint_ugly_indian2.jpg)
 ---
 # Garbage In ruby ?
 ---
@@ -25,7 +25,7 @@ Software Engineer @ Redpanthers
 
 ---
 ## Redpanthers
-![Redpanthers](images/redpanthers.logo)
+![Redpanthers](images/redpanthers.png)
 ### We love conferences
 
 Group photo here
@@ -75,7 +75,7 @@ Heap: Dynamic memory allocation
 * Allocate new page when empty slots aren't available
 
 ---
-
+# Object Allocation
 ---
 
 
@@ -83,7 +83,11 @@ Heap: Dynamic memory allocation
 a = "foo"
 b = "bar"
 c = { a => b }
+c = nil
 ```
+
+@[1-3]
+@[4](Resetting value c to nil)
 
 ![image](images/root.png)
 ---
@@ -97,17 +101,50 @@ Mark and Sweep (Ruby 1.8)
 * Remove unmakrked objects 
 
 ---
+```ruby
+module GC
+  def self.run
+    mark
+    sweep
+  end
+
+  def self.mark
+    root_objects.each do |root_obj|
+      root_obj.associated_objects.each do |object|
+        obj.update(marked: true)
+      end
+    end
+  end
+
+  def self.sweep
+    objects.where(marked: false).destroy_all
+    objects.update_all(marked: false)
+  end
+end
+```
+
+@[2-5](Mark and Sweep!)
+@[7-13] (Mark all living objects)
+@[15-18] (Sweep all unmarked objects)
+---
 
 ![mark](images/msweep.png)
 ---
-Simple, But causes parogram pause
+Simple, But causes program pause
+![gc](images/gc.png)
+> https://xkcd.com/303/
 ---
-Lazy sweep (1.9)
+#Lazy sweep (1.9)
+
+* Reduce the stoping the world |
+* 8% faster in average |
+
 ---
 
 Bitmap marking (Ruby 2.0)
 
 * Copy on write optimisation
+
 
 ---
 
