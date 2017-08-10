@@ -182,6 +182,8 @@ Incremental GC
 * Grey object: Marked, but may have reference to white objects
 * Black Marked, but no reference
 
+---
+
 ```ruby
 module GC
   def self.run
