@@ -42,15 +42,15 @@ Group photo here
 
 ---
 
-# Ruby stores everything in heap
+## Ruby stores everything in heap
 
 ---
 
-# Every thing is an object
+## Every thing is an object
 
 ---
 
-# Objects everywhere
+## Objects everywhere
 
 ---
 # Garbage memory
@@ -64,7 +64,7 @@ a = nil
 
 ---
 
-# We have to clean it
+## We have to clean it
 
 - Each object take 40 bytes of memory
 - Keeping them in memory is expensive
@@ -142,7 +142,7 @@ Bitmap marking (Ruby 2.0)
 
 +++
 
-# Copy on Write
+## Copy on Write
 - Copy on write is an os feature which enables sharing of space between child processes till they are modified by one of the process |
 - Ruby couldn't take advantage of this since we where changing objects for marking |
 - Bitmap marking take care of this by keeping marks out of the object | 
@@ -151,7 +151,7 @@ Bitmap marking (Ruby 2.0)
 
 ---
 
-# Generational GC
+## Generational GC
 
 - Young generation and old generation |
 - Major and Minor GC |
@@ -160,7 +160,7 @@ Bitmap marking (Ruby 2.0)
 
 ---
 
-Incremental GC
+## Incremental GC
 
 - Interleave GC process and Ruby process
 - Shorter individual pause | 
