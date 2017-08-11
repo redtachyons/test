@@ -146,7 +146,7 @@ Bitmap marking (Ruby 2.0)
 - Copy on write is an os feature which enables sharing of space between child processes till they are modified by one of the process |
 - Ruby couldn't take advantage of this since we where changing objects for marking |
 - Bitmap marking take care of this by keeping marks out of the object | 
-- Made huge impact in multi process servers like unicorn
+- Made huge impact in multi process servers like unicorn |
 - Introduced by Narihiro Nakamura |
 
 ---
