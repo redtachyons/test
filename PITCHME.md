@@ -31,31 +31,18 @@ Software Engineer @ Redpanthers
 Group photo here
 
 ---
-# GC in a language designed for happiness
----
 
-# Let's Talk about memory
+# Let's familarize some concepts
 
-+++
-![RAM](https://upload.wikimedia.org/wikipedia/commons/7/7c/RAM_module_SDRAM_1GiB.jpg)
-
-Source : https://commons.wikimedia.org/wiki/File:RAM_module_SDRAM_1GiB.jpg
-
----
-
-Stack: for static memory allocation
-
-Heap: Dynamic memory allocation
-
-+++
-
-![Stack vs HEAP](https://i.imgur.com/HB2GtHg.png)
+- Process | 
+- Thread |
+- Mutability and Immutability |
+- Stack and Heap |
 
 ---
 
 # Ruby stores everything in heap
 
-** Except fibers
 ---
 
 # Every thing is an object
@@ -65,41 +52,38 @@ Heap: Dynamic memory allocation
 # Objects everywhere
 
 ---
+# Garbage memory
+```ruby
+a = [
+  {c: 'd'}
+]
+...
+a = nil
+```
+
+---
 
 # We have to clean it
+
+- Each object take 40 bytes of memory
+- Keeping them in memory is expensive
 ---
 
 #Garbage collector
 
 * Also responsible Object allocation(Garbage creation)
-* Allocate in empty slots 
-* Allocate new page when empty slots aren't available
 
 ---
 # Object Allocation
 ---
 
-
-```ruby
-a = "foo"
-b = "bar"
-c = { a => b }
-c = nil
-```
-
-@[1-3]
-@[4](Resetting value c to nil)
-
-![image](images/root.png)
-
----
 ```ruby
 a = [
   {c: 'd'}
 ]
 ```
 
-![object diagram](images/ruby_heap_slot.png)
+![object diagram](images/object_diagram.png)
 ---
 Collect all unused objects
 ---
@@ -158,17 +142,11 @@ Bitmap marking (Ruby 2.0)
 +++
 
 # Copy on Write
-- Process and threads for independent execution
-- Processes have own memory space |
-- Threads share memory in the parent process |
-- Copy on write is an os feature which enables sharing of space between child processes till they are modified by one of the process
-
-+++
-
-- Ruby couldn't take advantage of this since we where changing objects for marking
+- Copy on write is an os feature which enables sharing of space between child processes till they are modified by one of the process |
+- Ruby couldn't take advantage of this since we where changing objects for marking |
 - Bitmap marking take care of this by keeping marks out of the object | 
+- Made huge impact in multi process servers like unicorn
 - Introduced by Narihiro Nakamura |
-
 
 ---
 
@@ -225,6 +203,13 @@ end
 * Parallel marking
 * Symbol GC(2.2)
 ---
+# Summary
+- Ruby uses GC so that you don't have to manually allocate and free objects
+- Object retention increases memory use |
+- Object creation even if temporary can be a performance problem, can also increase memory |
+- Understanding GC helps you when you want to tune your application | 
+
+---
 # TIPS
 ---
 
@@ -233,11 +218,67 @@ end
 ---
 > Programmers waste enormous amounts of time thinking about, or worrying about, the speed of noncritical parts of their programs, and these attempts at efficiency actually have a strong negative impact when debugging and maintenance are considered. 
 
++++
+
 > We should forget about small efficiencies, say about 97% of the time: premature optimization is the root of all evil. Yet we should not pass up our opportunities in that critical 3%. Donald Knuth
 
 ---
+- Do not retain objects unless necessary
+```ruby
+100_000.times do
+  foo = "a string"
+end
+```
+
+```ruby
+RETAINED = []
+100_000.times do
+  RETAINED << "a string"
+end
+```
+
+---
+Be aware of memory consumption when using active record methods
+
+```ruby
+  Model.each do |item|
+    process(item)
+  end
+```
+
+```ruby
+  Model.find_each do |item|
+    process(item)
+  end
+```
+
+```
+  Model.select(:id,:other, :necessary, :attributes)
+```
+
++++
+## Idiomatic ruby vs perfomance ?
+```ruby
+class Thing; end
+list = Array.new(1000) { Thing.new }
+list.each do |item|
+  puts item 
+end
+list = nil
+```
+
+```ruby
+class Thing; end
+list = Array.new(1000) { Thing.new }
+while list.count > 0
+  puts list.pop
+end
+```
++++
+
+
+---
 - Prefer symbol over string for hash key |
-- Do not try to retain objects in the memory unless necessary |
 - Use frozen string literal feature for ruby 2.3 and above |
 - Use jmalloc over glibc |
 - Tune GC parameters (Only if you know what you are doing) |
@@ -245,6 +286,7 @@ end
 - Offload operations to database | 
 - Do not depend on enumerables when data is too big | 
 - Always update to latest ruby version |
+
 ---
 
 #TOOLS
@@ -252,15 +294,6 @@ end
 - Derailed Benchmarks |
 - Heapy |
 - ruby-prof |
-
----
-
-Conclusion
-
-- Ruby uses GC so that you don't have to manually allocate and free objects
-- Object retention increases memory use |
-- Object creation even if temporary can be a performance problem, can also increase memory |
-- Understanding GC helps you when you want to tune your application | 
 
 ---
 
