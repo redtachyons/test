@@ -231,7 +231,9 @@ end
 ## Can ~~money~~ sacrificing perfomance buy happiness?
 
 ---
-> Programmers waste enormous amounts of time thinking about, or worrying about, the speed of noncritical parts of their programs, and these attempts at efficiency actually have a strong negative impact when debugging and maintenance are considered. We should forget about small efficiencies, say about 97% of the time: premature optimization is the root of all evil. Yet we should not pass up our opportunities in that critical 3%. Donald Knuth
+> Programmers waste enormous amounts of time thinking about, or worrying about, the speed of noncritical parts of their programs, and these attempts at efficiency actually have a strong negative impact when debugging and maintenance are considered. 
+
+> We should forget about small efficiencies, say about 97% of the time: premature optimization is the root of all evil. Yet we should not pass up our opportunities in that critical 3%. Donald Knuth
 
 ---
 - Prefer symbol over string for hash key |
@@ -250,6 +252,15 @@ end
 - Derailed Benchmarks |
 - Heapy |
 - ruby-prof |
+
+---
+
+Conclusion
+
+- Ruby uses GC so that you don't have to manually allocate and free objects
+- Object retention increases memory use |
+- Object creation even if temporary can be a performance problem, can also increase memory |
+- Understanding GC helps you when you want to tune your application | 
 
 ---
 
