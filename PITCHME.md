@@ -20,7 +20,7 @@
 
 Software Engineer @ Redpanthers
 
-@tachyons in github
+@tachyons in GitHub
 @_tachyons in twitter
 
 ---
@@ -34,11 +34,12 @@ Group photo here
 # GC in a language designed for happiness
 ---
 
-# Let's Talk about memmory
+# Let's Talk about memory
 
 +++
 ![RAM](https://upload.wikimedia.org/wikipedia/commons/7/7c/RAM_module_SDRAM_1GiB.jpg)
-> Source : https://commons.wikimedia.org/wiki/File:RAM_module_SDRAM_1GiB.jpg
+
+Source : https://commons.wikimedia.org/wiki/File:RAM_module_SDRAM_1GiB.jpg
 
 ---
 
@@ -54,7 +55,7 @@ Heap: Dynamic memory allocation
 
 # Ruby stores everything in heap
 
-** Except fibres
+** Except fibers
 ---
 
 # Every thing is an object
@@ -68,7 +69,7 @@ Heap: Dynamic memory allocation
 # We have to clean it
 ---
 
-#Grabage collector
+#Garbage collector
 
 * Also responsible Object allocation(Garbage creation)
 * Allocate in empty slots 
@@ -107,7 +108,7 @@ Collect all unused objects
 Mark and Sweep (Ruby 1.8)
 
 * Mark all living objects
-* Remove unmakrked objects 
+* Remove unmarked objects 
 
 ---
 ```ruby
@@ -152,7 +153,7 @@ Simple, But causes program pause
 
 Bitmap marking (Ruby 2.0)
 
-* Copy on write optimisation
+* Copy on write optimization
 
 +++
 
@@ -160,7 +161,7 @@ Bitmap marking (Ruby 2.0)
 - Process and threads for independent execution
 - Processes have own memory space |
 - Threads share memory in the parent process |
-- Copy on write is a os feature which enables sharing of space between child processes till they are modified by one of the process
+- Copy on write is an os feature which enables sharing of space between child processes till they are modified by one of the process
 
 +++
 
@@ -173,7 +174,7 @@ Bitmap marking (Ruby 2.0)
 
 # Generational GC
 
-- Yound generation and old generation |
+- Young generation and old generation |
 - Major and Minor GC |
 - Address throughput issue |
 - Most objects die young |
@@ -182,9 +183,9 @@ Bitmap marking (Ruby 2.0)
 
 Incremental GC
 
-- Intereleave GC process and Ruby process
+- Interleave GC process and Ruby process
 - Shorter individual pause | 
-- consistent perfomenece |
+- consistent perfomance |
 
 ---
 * white object: Not marked object
@@ -215,7 +216,7 @@ end
 ---
 # Compaction GC
 - Work in progress
-- Remove heap fragmentation by alligning objects together | 
+- Remove heap fragmentation by aligning objects together | 
 - By Aaron Patterson |
 
 ---
@@ -227,20 +228,20 @@ end
 # TIPS
 ---
 
-## Can ~~money~~ sacrifising perfomence buy happiness ?
+## Can ~~money~~ sacrificing perfomance buy happiness?
 
 ---
 > Programmers waste enormous amounts of time thinking about, or worrying about, the speed of noncritical parts of their programs, and these attempts at efficiency actually have a strong negative impact when debugging and maintenance are considered. We should forget about small efficiencies, say about 97% of the time: premature optimization is the root of all evil. Yet we should not pass up our opportunities in that critical 3%. Donald Knuth
 
 ---
 - Prefer symbol over string for hash key |
-- Do not try to retain objects in the memory unless necessory |
+- Do not try to retain objects in the memory unless necessary |
 - Use frozen string literal feature for ruby 2.3 and above |
 - Use jmalloc over glibc |
 - Tune GC parameters (Only if you know what you are doing) |
 - Limit strings less than 23 characters when possible | 
 - Offload operations to database | 
-- Do not depend enumerables when data is too big | 
+- Do not depend on enumerables when data is too big | 
 - Always update to latest ruby version |
 ---
 
