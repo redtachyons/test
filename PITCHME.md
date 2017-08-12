@@ -1,3 +1,7 @@
+कचरा गोळा करणारा. मी काळजी का केली पाहिजे?
+
+
+---
 # Garbage collector in ruby, why should I care!
 
 
@@ -127,21 +131,21 @@ Simple, But causes program pause
 ![gc](images/gc.png)
 > https://xkcd.com/303/
 ---
-#Lazy sweep (1.9)
+## Lazy sweep (1.9)
 
-* Reduce the stoping the world |
-* 8% faster in average |
+- Reduce the stoping the world byt spliting sweep phase |
+- 8% faster in average |
 
 ---
 
-Bitmap marking (Ruby 2.0)
+## Bitmap marking (Ruby 2.0)
 
 * Copy on write optimization
 
 +++
 
 ## Copy on Write
-- Copy on write is an os feature which enables sharing of space between child processes till they are modified by one of the process |
+- Copy on write is an OS feature which enables sharing of space between child processes till they are modified by one of the process |
 - Ruby couldn't take advantage of this since we where changing objects for marking |
 - Bitmap marking take care of this by keeping marks out of the object | 
 - Made huge impact in multi process servers like unicorn |
@@ -167,7 +171,7 @@ Bitmap marking (Ruby 2.0)
 ---
 * white object: Not marked object
 * Grey object: Marked, but may have reference to white objects
-* Black Marked, but no reference
+* Black object:  Marked, but no reference
 
 ---
 
