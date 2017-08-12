@@ -222,7 +222,8 @@ end
 > We should forget about small efficiencies, say about 97% of the time: premature optimization is the root of all evil. Yet we should not pass up our opportunities in that critical 3%. Donald Knuth
 
 ---
-- Do not retain objects unless necessary
+ Do not retain objects unless necessary
+
 ```ruby
 100_000.times do
   foo = "a string"
@@ -240,7 +241,7 @@ end
 Be aware of memory consumption when using active record methods
 
 ```ruby
-  Model.each do |item|
+  Model.all.each do |item|
     process(item)
   end
 ```
@@ -273,8 +274,6 @@ while list.count > 0
   puts list.pop
 end
 ```
-+++
-
 
 ---
 - Prefer symbol over string for hash key |
@@ -297,6 +296,7 @@ end
 ---
 
 Thanks
+@_tachyons
 
 ---
 
