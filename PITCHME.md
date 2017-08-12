@@ -280,7 +280,7 @@ end
 ```
 
 ---
-- Prefer symbol over string for hash key |
+- Prefer symbol over string for hash key 
 - Use frozen string literal feature for ruby 2.3 and above |
 - Use jmalloc over glibc |
 - Tune GC parameters (Only if you know what you are doing) |
