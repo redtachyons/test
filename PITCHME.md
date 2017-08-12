@@ -3,7 +3,7 @@
 
 ---?image=assets/bg.jpg
 
-# Ugly Indian Initiative
+# The Ugly Indian
 
 +++
 
@@ -28,8 +28,6 @@ Software Engineer @ Redpanthers
 ## Redpanthers
 ![Redpanthers](images/redpanthers.png)
 ### We love conferences
-
-Group photo here
 
 ---
 
