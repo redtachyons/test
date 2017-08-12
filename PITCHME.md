@@ -300,5 +300,6 @@ end
 ---
 
 Thanks
-@_tachyons
+
+github.com/tachyons
 
