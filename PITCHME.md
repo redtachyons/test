@@ -216,7 +216,7 @@ end
 # TIPS
 ---
 
-## Can ~~money~~ sacrificing perfomance buy happiness?
+## Giving up perfomance for happiness?
 
 ---
 > Programmers waste enormous amounts of time thinking about, or worrying about, the speed of noncritical parts of their programs, and these attempts at efficiency actually have a strong negative impact when debugging and maintenance are considered. 
